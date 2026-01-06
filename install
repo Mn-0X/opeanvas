@@ -1,0 +1,35 @@
+sudo apt update
+sudo apt upgrade -y
+#To install Openvas and its dependencies on our Kali Linux system run the following command"
+sudo apt install openvas
+
+
+#The next step is to run the installer, which will configure OpenVAS and download various network vulnerability tests (NVT) or signatures.
+#Due to a large number of NVTs (50.000+), the setting process may take some time and consume a lot of data.
+#Run the following command to start the setup process:
+sudo gvm-setup
+
+#The gvm-setup command will take a long time to download all the vulnerabilty definitions (Notus files, NASL files, SCAP data, CRET-Bund data, gvmd data)
+
+
+#OpenVAS will also set up an admin account and automatically generate a password for this account which is displayed in the last section of the setup output.
+
+#Did you forget to note down the password? You can change the admin password using the following commands:
+sudo gvmd --user=admin --new-password=passwd
+
+#To create a new user
+sudo runuser -u _gvm — gvmd — create-user=admin2 — new-password=12345
+#To change the password of the existing user
+sudo runuser -u _gvm — gvmd — user=admin — new-password=new_password
+#Verify the InstallationYou can verify your installation with.
+sudo gvm-check-setup
+
+#Run the following command to start the services:
+sudo gvm-start
+#To stop the OpenVAS services again, run:
+sudo gvm-stop
+
+
+#After the configuration process is complete, all the necessary OpenVAS processes will start and the web interface will open automatically (In my case I had to open the browser manually). 
+#The web interface is running locally on port 9392 and can be accessed through https://localhost:9392
+
