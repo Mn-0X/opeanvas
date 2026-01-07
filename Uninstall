@@ -1,0 +1,23 @@
+#Uninstall OpenVAS
+
+sudo systemctl stop gvmd
+sudo systemctl stop openvas-scanner
+sudo systemctl stop ospd-openvas
+sudo systemctl stop redis-server
+
+#uninstall OpenVAS and its related packages
+
+sudo apt purge openvas gvmd gvm*
+sudo apt autoremove --purge
+sudo apt clean
+
+#delete any files and directories associated with OpenVAS/GVM from your system.
+
+sudo rm -rf /etc/openvas
+sudo rm -rf /var/lib/openvas
+sudo rm -rf /var/lib/gvm
+sudo rm -rf /var/log/gvm
+sudo rm -rf /var/lib/redis
+
+#Remove User (_gvm): If you created the user _gvm during installation, delete this user as well.
+sudo deluser --remove-home _gvm
